@@ -31,25 +31,25 @@ A factor displays level labels but stores integer codes, and its explicit levels
 A list keeps its two unlike members separate: a two-element integer vector and a one-element character vector. `typeof` is list, and `length` counts its two top-level entries; it has no dimensions.
 
 ## P09
-Replace this line with the rule that decides this case.
+A data frame is a list of columns, so `typeof()` is list and `length()` counts its two columns. The `id` column holds integers 1 and 2, while `passed` holds TRUE and FALSE; two rows and two columns give it dimensions 2x2.
 
 ## P10
-Replace this line with the rule that decides this case.
+R fills the integer matrix down its columns, then recycles 10 and 20 across its stored values. The sums are 11, 22, 13, 24, 15, and 26 in storage order; integer addition keeps integer type, length six, and dimensions 2x3.
 
 ## P11
-Replace this line with the rule that decides this case.
+Without `na.rm = TRUE`, the missing value makes the mean missing. `mean()` returns one double value with no dimensions.
 
 ## P12
-Replace this line with the rule that decides this case.
+With `na.rm = TRUE`, `mean()` drops the missing value and averages 8 and 10 to get 9. The result is one double value with no dimensions.
 
 ## P13
-Replace this line with the rule that decides this case.
+`1:3` first makes an integer vector, but assigning the double 2.5 widens the whole vector to double. The values are 1, 2.5, and 3, with length three and no dimensions.
 
 ## P14
-Replace this line with the rule that decides this case.
+`ifelse()` replaces the missing score with 0 and doubles the other scores, giving 14, 0, 24, and 8. Subassignment caps 24 at 15, leaving a double vector of length four with no dimensions.
 
 ## P15
-Replace this line with the rule that decides this case.
+`array()` keeps the eight integers from `1:8` in storage order and adds a dimension attribute of 2x2x2. Its `typeof()` is integer and its length is eight, even though it has three dimensions.
 
 ## P16
-Replace this line with the rule that decides this case.
+Index 0 selects no elements from the integer vector. The result is an empty integer vector of length zero with no dimensions.

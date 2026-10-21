@@ -6,11 +6,6 @@ For the sample scores, Ada's 8 becomes 16, Grace's missing value becomes 0, Linu
 
 The vector approach expresses the transformation as a small sequence of operations. It avoids manually tracking an index and makes it easier to check that the same rules apply to every score. I would generally keep this version in an R program because it is concise and communicates the intended transformation clearly.
 
+In `clean_scores_scalar()`, the `for` loop shows the order directly. On the first pass it reads Ada's 8, doubles it to 16, and writes it back. On the second pass it reads Grace's `NA`, enters the missing-value branch, and writes 0 without trying to double it. The next two passes turn Linus's 12 into 24 and then 20, and Barbara's 4 into 8. Each pass works with one selected element. I use `setNames(as.double(scores), names(scores))` before the loop and write through `out[[i]]`, so the result stays a named double vector, even for an empty integer input.
 
-
-
-
-Replace this paragraph after your checks pass. Trace one input, including the
-missing value, through `clean_scores_vector()` and `clean_scores_scalar()`.
-Compare the two evaluation models, identify where recycling would change the
-answer, and explain which implementation you would keep in an R program.
+Recycling could silently change the vector result if I used a multiplier with the wrong length. For example, with the sample scores after replacing Grace's missing value, `out * c(2, 3)` would reuse 2 and 3 in turn. It would produce 16, 0, 24, and 12 before the cap, so Barbara would finish at 12 instead of 8. The current code uses the single value 2, which applies the same rule to every score. I would keep the vector version for this task, but the loop makes each decision easier to inspect when debugging one student's score.
